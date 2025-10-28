@@ -1,0 +1,46 @@
+# .github/workflows/ci.yml
+name: Python CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Usado por algumas ferramentas de linter, boa prática
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip' # Cachea as dependências do pip para builds mais rápidas
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        # C901: Função muito complexa, E9, F8: Erros de sintaxe ou variáveis não definidas
+        # E501: Linha muito longa (ajuste para 99 caracteres, padrão do Black)
+        # B008: Argumento padrão mutável
+        # W503: Quebra de linha antes do operador binário
+        # Desabilita E203 porque entra em conflito com o Black.
+        flake8 . --count --select=E9,F63,F7,F82 --exclude=venv,.git --show-source --statistics
+        flake8 . --count --max-complexity=10 --max-line-length=99 --exclude=venv,.git --statistics
+        
+    - name: Run a simple script (Simulates basic tests)
+      run: |
+        python -c "import database; print('Database initialized (simulated CI check).')"
+        python -c "import main; print('FastAPI app imported (simulated CI check).')"
+        # Em um projeto real, você rodaria 'pytest' aqui!
+        # Por exemplo: pytest .
