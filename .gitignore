@@ -1,0 +1,11 @@
+# .gitignore
+venv/
+*.pyc
+__pycache__/
+.vscode/
+
+# Python-specific
+.env
+.DS_Store
+*.db
+tasks.db

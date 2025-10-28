@@ -1,0 +1,140 @@
+/* simple_task_manager/static/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef1f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.add-task form {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.add-task input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 18px;
+    border: 1px solid #c0c0c0;
+    border-radius: 6px;
+    margin-right: 10px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.add-task button {
+    background-color: #3498db; /* Azul vibrante */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.add-task button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.add-task button:active {
+    transform: translateY(0);
+}
+
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #eceff1;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.task-item:hover {
+    background-color: #fcfcfc;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item .task-description {
+    flex-grow: 1;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.task-item.completed .task-description {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.task-actions button {
+    font-size: 0.9em;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.task-actions button.toggle-complete {
+    background-color: #27ae60; /* Verde */
+    color: white;
+}
+
+.task-actions button.toggle-complete:hover {
+    background-color: #229954;
+    transform: translateY(-1px);
+}
+
+.task-actions button.delete-task {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+}
+
+.task-actions button.delete-task:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+.no-tasks {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 20px;
+    font-style: italic;
+}
