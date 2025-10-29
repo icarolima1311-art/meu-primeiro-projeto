@@ -3,6 +3,7 @@ import sqlite3
 
 DATABASE_NAME = "tasks.db"
 
+
 def init_db():
     """
     Inicializa o banco de dados e cria a tabela 'tasks' se ela não existir.
@@ -20,6 +21,7 @@ def init_db():
     conn.close()
     print("Banco de dados inicializado ou já existe.")
 
+
 def create_task(description: str):
     """
     Cria uma nova tarefa no banco de dados.
@@ -31,6 +33,7 @@ def create_task(description: str):
     task_id = cursor.lastrowid
     conn.close()
     return {"id": task_id, "description": description, "completed": False}
+
 
 def get_tasks():
     """
@@ -45,6 +48,7 @@ def get_tasks():
     conn.close()
     return tasks
 
+
 def update_task_status(task_id: int, completed: bool):
     """
     Atualiza o status 'completed' de uma tarefa específica.
@@ -54,7 +58,8 @@ def update_task_status(task_id: int, completed: bool):
     cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (1 if completed else 0, task_id))
     conn.commit()
     conn.close()
-    
+
+
 def delete_task(task_id: int):
     """
     Exclui uma tarefa do banco de dados.
@@ -64,5 +69,6 @@ def delete_task(task_id: int):
     cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
     conn.commit()
     conn.close()
-    
+
+
 init_db()
